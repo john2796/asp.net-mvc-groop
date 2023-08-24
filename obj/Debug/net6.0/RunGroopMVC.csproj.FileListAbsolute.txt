@@ -1,0 +1,8 @@
+C:\Users\jbmir\asp-net-mvc\RunGroopMVC\RunGroopMVC\obj\Debug\net6.0\RunGroopMVC.csproj.AssemblyReference.cache
+C:\Users\jbmir\asp-net-mvc\RunGroopMVC\RunGroopMVC\obj\Debug\net6.0\RunGroopMVC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jbmir\asp-net-mvc\RunGroopMVC\RunGroopMVC\obj\Debug\net6.0\RunGroopMVC.AssemblyInfoInputs.cache
+C:\Users\jbmir\asp-net-mvc\RunGroopMVC\RunGroopMVC\obj\Debug\net6.0\RunGroopMVC.AssemblyInfo.cs
+C:\Users\jbmir\asp-net-mvc\RunGroopMVC\RunGroopMVC\obj\Debug\net6.0\RunGroopMVC.csproj.CoreCompileInputs.cache
+C:\Users\jbmir\asp-net-mvc\RunGroopMVC\RunGroopMVC\obj\Debug\net6.0\RunGroopMVC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jbmir\asp-net-mvc\RunGroopMVC\RunGroopMVC\obj\Debug\net6.0\RunGroopMVC.RazorAssemblyInfo.cache
+C:\Users\jbmir\asp-net-mvc\RunGroopMVC\RunGroopMVC\obj\Debug\net6.0\RunGroopMVC.RazorAssemblyInfo.cs
