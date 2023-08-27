@@ -9,6 +9,7 @@ namespace RunGroopWebApp.Repository
     public class ClubRepository : IClubRepository
     {
         private readonly ApplicationDbContext _context;
+
         public ClubRepository(ApplicationDbContext context)
         {
             _context = context;
@@ -32,33 +33,37 @@ namespace RunGroopWebApp.Repository
 
         public async Task<List<City>> GetAllCitiesByState(string state)
         {
-            return await _context.Cities.Where(c => c.StateCode == state).ToListAsync();
+            return await _context.Cities.Where(c => c.StateCode.Contains(state)).ToListAsync(); 
         }
 
         public async Task<List<State>> GetAllStates()
         {
             return await _context.States.ToListAsync();
+        }
 
+        public async Task<Club?> GetByIdAsync(int id)
+        {
+            return await _context.Clubs.Include(i => i.Address).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Club?> GetByIdAsyncNoTracking(int id)
         {
-           return await _context.Clubs.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id); 
+            return await _context.Clubs.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<IEnumerable<Club>> GetClubByCity(string city)
         {
-            return await _context.Clubs.Where(c => c.Address.City.Contains(city)).Distinct().ToListAsync(); 
+            return await _context.Clubs.Where(c => c.Address.City.Contains(city)).Distinct().ToListAsync();
         }
 
         public async Task<IEnumerable<Club>> GetClubsByCategoryAndSliceAsync(ClubCategory category, int offset, int size)
         {
             return await _context.Clubs
-                    .Include(i => i.Address)
-                    .Where(c => c.ClubCategory == category)
-                    .Skip(offset)
-                    .Take(size)
-                    .ToListAsync();
+                .Include(i => i.Address)
+                .Where(c => c.ClubCategory == category)
+                .Skip(offset)
+                .Take(size)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Club>> GetClubsByState(string state)
@@ -73,28 +78,23 @@ namespace RunGroopWebApp.Repository
 
         public async Task<int> GetCountByCategoryAsync(ClubCategory category)
         {
-            return await _context.Clubs.CountAsync(c => c.ClubCategory == category); ;
+            return await _context.Clubs.CountAsync(c => c.ClubCategory == category);
         }
 
-        public async Task<Club?> GetByIdAsync(int id)
-        {
-            return await _context.Clubs.Include(i => i.Address).FirstOrDefaultAsync(c => c.Id == id);
-        }
-         
         public async Task<IEnumerable<Club>> GetSliceAsync(int offset, int size)
         {
-            return await _context.Clubs.Include(c => c.Address).Skip(offset).Take(size).ToListAsync();  
+            return await _context.Clubs.Include(i => i.Address).Skip(offset).Take(size).ToListAsync();
         }
 
         public bool Save()
         {
-            var saved = _context.SaveChanges();
+           var saved = _context.SaveChanges();
             return saved > 0;
         }
 
         public bool Update(Club club)
         {
-            _context.Update(club);  
+            _context.Update(club);
             return Save();
         }
     }

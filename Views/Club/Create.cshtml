@@ -1,0 +1,61 @@
+﻿@using RunGroopWebApp.Data.Enum;
+@model Club
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<form method="post" asp-action="Create">
+    <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />
+
+        <div class="col mb-3">
+            <label asp-for="Title">Title</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="col mb-3">
+            <label asp-for="ClubCategory">ClubCategory</label>
+            <select asp-for="ClubCategory" asp-items="@Html.GetEnumSelectList<ClubCategory>()" class="form-control">
+                <option>--Select--</option>
+            </select>
+            <span asp-validation-for="ClubCategory" class="text-danger"></span>
+        </div>
+
+        <div class="col mb-3">
+            <label asp-for="Description">Description</label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="col mb-3">
+        <label asp-for="Address.Street">Address Street</label>
+            <input asp-for="Address.Street" class="form-control"  />
+            <span asp-validation-for="Address.Street" class="text-danger"></span>
+        </div>
+
+        <div class="col mb-3">
+            <label asp-for="Address.City">Address City</label>
+            <input asp-for="Address.City" class="form-control" />
+            <span asp-validation-for="Address.City" class="text-danger"></span>
+        </div>
+
+        <div class="col mb-3">
+            <label asp-for="Address.State">Address State</label>
+            <input asp-for="Address.State" class="form-control" />
+            <span asp-validation-for="Address.State" class="text-danger"></span>
+        </div>
+
+        <div class="col mb-3">
+            <label asp-for="Image">Image</label>
+            <input asp-for="Image" class="form-control"  />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        <div class="col mb-3">
+            <button type="submit" class="btn btn-primary">Create Account</button>
+        </div>
+</form>
+
