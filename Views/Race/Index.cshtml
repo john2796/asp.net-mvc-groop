@@ -83,17 +83,14 @@
                                 <small>@race.RaceCategory</small>
                             </div>
 
-                            @if (isAuthenticated && User.IsInRole("admin"))
-                            {
-                                <div>
-                                    <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Race" asp-action="Edit" asp-route-id="@race.Id">
-                                        Edit
-                                    </a>
-                                    <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Race" asp-action="Delete" asp-route-id="@race.Id">
-                                        Delete
-                                    </a>
-                                </div>
-                            }
+                            <div>
+                                <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Club" asp-action="Edit" asp-route-id="@race.Id">
+                                    Edit
+                                </a>
+                                <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Club" asp-action="Delete" asp-route-id="@race.Id">
+                                    Delete
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>

@@ -84,8 +84,6 @@
                                 <small>@club.ClubCategory</small>
                             </div>
 
-                            @if (isAuthenticated && User.IsInRole("admin"))
-                            {
                                 <div>
                                     <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Club" asp-action="Edit" asp-route-id="@club.Id">
                                         Edit
@@ -94,7 +92,6 @@
                                         Delete
                                     </a>
                                 </div>
-                            }
                         </div>
                     </div>
                 </li>
