@@ -4,6 +4,7 @@ using RunGroopWebApp.Data;
 using RunGroopWebApp.Data.Enum;
 using RunGroopWebApp.Interfaces;
 using RunGroopWebApp.Models;
+using RunGroopWebApp.Repository;
 using RunGroopWebApp.ViewModels;
 
 namespace RunGroopWebApp.Controllers
@@ -57,6 +58,24 @@ namespace RunGroopWebApp.Controllers
         {
             var race = await _raceRepository.GetByIdAsync(id);
             return race == null ? NotFound() : View(race);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Race race)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(race);
+            }
+            _raceRepository.Add(race);
+
+            return RedirectToAction("Index");
         }
     }
 }
