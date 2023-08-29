@@ -3,7 +3,6 @@
 @using RunGroopWebApp.ViewModels
 @model IndexClubViewModel
 
-
 @{
     bool isAuthenticated = User.Identity?.IsAuthenticated == true;
 
@@ -18,11 +17,8 @@
 
 
 <section class="space-sm flush-with-above">
-
     <div class="container">
         <div class="row">
-            <!-- Club Categories -->
-
             <div class="col text-center">
                 <p>Club Categories</p>
                 <div class="mb-3">
@@ -35,28 +31,23 @@
             </div>
         </div>
     </div>
-
-        <div class="container">
-
-        <!-- Pagination -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    @if (isValidPage)
-                    {
-                        <a type="button" class="btn btn-sm btn-outline-primary @prevDisabled"
-                           asp-action="Index" asp-route-page="@(Model.Page - 1)" asp-route-category="@Model.Category">
-                            Prev
-                        </a>
-                        <a type="button" class="btn btn-sm btn-outline-primary @nextDisabled"
-                           asp-action="Index" asp-route-page="@(Model.Page + 1)" asp-route-category="@Model.Category">
-                            Next
-                        </a>
-                        <span class="text-muted text-small">Results @resultStart - @resultEnd of @Model.TotalClubs</span>
-                    }
-                </div>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                @if (isValidPage)
+                {
+                    <a type="button" class="btn btn-sm btn-outline-primary @prevDisabled"
+                       asp-action="Index" asp-route-page="@(Model.Page - 1)" asp-route-category="@Model.Category">
+                        Prev
+                    </a>
+                    <a type="button" class="btn btn-sm btn-outline-primary @nextDisabled"
+                       asp-action="Index" asp-route-page="@(Model.Page + 1)" asp-route-category="@Model.Category">
+                        Next
+                    </a>
+                    <span class="text-muted text-small">Results @resultStart - @resultEnd of @Model.TotalClubs</span>
+                }
             </div>
-
-        <!-- Cards -->
+        </div>
         <ul class="row feature-list feature-list-sm">
             @foreach (var club in Model.Clubs)
             {
@@ -78,12 +69,12 @@
                             <p class="card-text">@club.Description</p>
                             <p class="card-text">@club.Address.City, @club.Address.State</p>
                         </div>
-
                         <div class="card-footer card-footer-borderless d-flex justify-content-between">
                             <div>
                                 <small>@club.ClubCategory</small>
                             </div>
-
+                            @if (isAuthenticated && User.IsInRole("admin"))
+                            {
                                 <div>
                                     <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Club" asp-action="Edit" asp-route-id="@club.Id">
                                         Edit
@@ -92,11 +83,27 @@
                                         Delete
                                     </a>
                                 </div>
+                            }
                         </div>
                     </div>
                 </li>
             }
         </ul>
-      </div>
-
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                @if (isValidPage)
+                {
+                    <a type="button" class="btn btn-sm btn-outline-primary @prevDisabled"
+                       asp-action="Index" asp-route-page="@(Model.Page - 1)" asp-route-category="@Model.Category">
+                        Prev
+                    </a>
+                    <a type="button" class="btn btn-sm btn-outline-primary @nextDisabled"
+                       asp-action="Index" asp-route-page="@(Model.Page + 1)" asp-route-category="@Model.Category">
+                        Next
+                    </a>
+                    <span class="text-muted text-small">Results @resultStart - @resultEnd of @Model.TotalClubs</span>
+                }
+            </div>
+        </div>
+    </div>
 </section>
